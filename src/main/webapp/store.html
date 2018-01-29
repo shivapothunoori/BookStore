@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Book Store</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	
+	<!-- JS -->
+	<script src="js/jquery-1.4.1.min.js" type="text/javascript"></script>	
+<!-- 	<script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script> -->	
+	<script src="js/jquery-func.js" type="text/javascript"></script>	
+	<!-- End JS -->
+	
+			<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	   $.ajax({
+           url: './books',
+           type: 'get',
+           success: function(data){
+               var t='';
+        	   $.each(data, function (i, item) {
+                   t += '  <li> <a href="#"><img src="'+ item.Picture+'" style="width:100%;height:100%" alt="" /></a><div class="product-info">'+
+                   '<h3>' +item.BookName+ '</h3><div class="product-desc"> <p>' + item.Author + '</p><strong class="price">' + item.Price +
+                   '</strong></div> 	</div>   	</li>';
+               });
+               $("#books-ul").append(t);
+           },
+           error: function (xhr, ajaxOptions, thrownError) {
+               var errorMsg = 'Ajax request failed: ' + xhr.responseText;
+               console.log(errorMsg);
+			}
+	   });
+	   
+	   $.ajax({
+		    url: './categories',
+		    type: 'get',
+		    success: function(data){
+		        var t='';
+		 	   $.each(data, function (i, item) {
+		            t += '<li><a href="#">' + item.SubCat + '</a></li>';
+		        });
+		        $("#cat-li").append(t);
+		    },
+		    error: function (xhr, ajaxOptions, thrownError) {
+		        var errorMsg = 'Ajax request failed: ' + xhr.responseText;
+		        console.log(errorMsg);
+		     
+		}
+		});
+
+	   });
+
+</script>
+</head>
+<body>
+	
+<!-- Shell -->	
+<div class="shell">
+	
+	<!-- Header -->	
+	<div id="header">
+		<!-- <h1 id="logo"><a href="#">Book Store</a></h1> -->
+		<a href="index.html">
+			<img src="css/images/logo.png" style="font-size: 0;line-height: 0; width: 156px;  height: 64px; float: left;" alt="" />
+		</a>	
+		
+		<!-- Cart -->
+		<div id="cart">
+			<a href="#" class="cart-link">Your Shopping Cart</a>
+			<div class="cl">&nbsp;</div>
+			<span>Total: <strong>4</strong></span>
+			&nbsp;&nbsp;
+			<span>Cost: <strong>$250.99</strong></span>
+		</div>
+		<!-- End Cart -->
+		
+		<!-- Navigation -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="index.html">Home</a></li>
+			    <li><a href="myaccount.html">My Account</a></li>
+			    <li><a href="store.html">Store</a></li>
+			    <li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+		<!-- End Navigation -->
+	</div>
+	<!-- End Header -->
+	
+	<!-- Main -->
+	<div id="main">
+		<div class="cl">&nbsp;</div>
+		
+		<!-- Content -->
+		<div id="content">
+			
+			<!-- Products -->
+			<div class="products">
+				<div class="cl">&nbsp;</div>
+				<ul id="books-ul">
+				
+				</ul>
+				
+				<div class="cl">&nbsp;</div>
+			</div>
+							<!-- End Products -->
+			
+		</div>
+		<!-- End Content -->
+		
+		<!-- Sidebar -->
+		<div id="sidebar">
+			
+			<!-- Search -->
+			
+			<!-- End Search -->
+			
+			<!-- Categories -->
+			<div class="box categories">
+				<h2>Categories <span></span></h2>
+				<div class="box-content">
+					<ul id="cat-li">
+					    
+					</ul>
+				</div>
+			</div>
+			<!-- End Categories -->
+			
+		</div>
+		<!-- End Sidebar -->
+		
+		<div class="cl">&nbsp;</div>
+	</div>
+	<!-- End Main -->
+	
+	<!-- Side Full -->
+	<div class="side-full">
+		
+		
+	
+	</div>
+	<!-- End Side Full -->
+	
+	<!-- Footer -->
+	<div id="footer">
+		<p class="left">
+			<a href="index.html">Home</a>
+			<span>|</span>
+			<a href="myaccount.html">My Account</a>
+			<span>|</span>
+			<a href="store.html">The Store</a>
+			<span>|</span>
+			<a href="contact.html">Contact</a>
+		</p>
+		<p class="right">
+			&copy; 2017 Book Store.
+			
+		</p>
+	</div>
+	<!-- End Footer -->
+	
+</div>	
+<!-- End Shell -->
+	
+	
+</body>
+</html>
